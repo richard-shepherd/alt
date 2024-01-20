@@ -1,0 +1,42 @@
+ALT - Another Log Tailer
+------------------------
+- A log tailer designed to be run in a client-server way
+
+- The server can be hosted on a remote machine and communicate
+  with the client via a network transport
+
+- The server should also be able to be run locally, ie in the same process
+  if we want to create a standalone tail app
+
+- The UI should be separate from the client library
+  - So that the client-server code can be used with differnt UIs
+  - We should prvide a default / sample UI
+
+- Features
+  - The client should cache a configured amount of data
+  - Configurable text highlighting in the UI, eg for ERROR, WARN etc
+  - Text search which is performed server side
+  - Find lines by timestamp
+  - Updates from the server can be compressed when being sent via the transport
+
+
+Components
+----------
+  UI - Client - (Transport) - Server
+
+
+Transport and interfaces
+------------------------
+- The server exposes an IServer interface
+  - The client plugs in to an IServer
+  - This could be the Server directly
+  - Or it could be to the Transport which exposes the IServer interface to the client
+    - And then connects to the real Server by its IServer interface
+
+- The client exposes an IClient interface (to the UI)
+
+
+Finding lines by timestamp
+--------------------------
+
+
