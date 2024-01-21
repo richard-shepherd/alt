@@ -10,7 +10,7 @@ ALT - Another Log Tailer
 
 - The UI should be separate from the client library
   - So that the client-server code can be used with differnt UIs
-  - We should prvide a default / sample UI
+  - We should provide a default / sample UI
 
 - Features
   - The client should cache a configured amount of data
@@ -18,6 +18,8 @@ ALT - Another Log Tailer
   - Text search which is performed server side
   - Find lines by timestamp
   - Updates from the server can be compressed when being sent via the transport
+  - Works with very large files
+  - Ability to copy / download a file locally
 
 
 Components
@@ -27,16 +29,117 @@ Components
 
 Transport and interfaces
 ------------------------
-- The server exposes an IServer interface
-  - The client plugs in to an IServer
+- The server exposes an ILogTailServer interface
+  - The client plugs in to an ILogTailServer
   - This could be the Server directly
-  - Or it could be to the Transport which exposes the IServer interface to the client
-    - And then connects to the real Server by its IServer interface
+  - Or it could be to the Transport which exposes the ILogTailServer interface to the client
+    - And then the other end of the trasnport connects to the real Server by its ILogTailServer interface
 
-- The client exposes an IClient interface (to the UI)
+- The client exposes an ILogTailClient interface (to the UI)
+  - Or does it???
+  - Aren't all the interfaces the same?
+
+- Do we need anything different on the client interface compared with the server interface?
+  - The client will do caching of (possible remote) data
+  - But that does not need to be part of the interface
+
+- Let's say that there is just one interface: ILogTailer
+
+- ILogTailer
+  - constructor(path, tail-callback)
+  - constructor(remote-machine-name, path, tail-callback)
+  - getText(start-position, end-position)  // used (for example) by the UI when you scroll
+  
+- tail-callback provides:
+  - file-size
+  - text-block: 
+    - start position of text
+    - text itself
+
+
+Names
+-----
+- Should the names have the word 'Log' in them?
+
+- I guess it could be used to read files which are not logs
+
+- On the other hand, some of the features such as timestamp detection are more
+  directly related to log files
+
+- So, let's keep the word 'Log'
 
 
 Finding lines by timestamp
 --------------------------
+- Timestamps could be in various format
+
+- They may (or may not) include a date as well as a time
+
+- They are likely to be close to the start of each line
+  - But not necessarily right at the start
+
+- The client should provide info about:
+  - The datetime format
+  - The likely position in the line - even if just 0 < position < 50
+
+- The server could scan the file and keep an index of timestamps vs positions
+  - For a configured number of items, eg 100
+
+- To find a timestamp we could use the index to find the bounds of the
+  timestamp and then use the main search feature to find the exact position
+  - To do this, search should have optional start-position and end-position
+    - At least at the server side
+
+
+Finding lines which match a search
+----------------------------------
+- Search can be standard or regex
+
+- What do we do if the search finds too many lines?
+  - eg, all the lines in a huge file?
+  - We cannot return them all
+  - It may not be good enough to return the first matches
+
+- I think we need some sort of enumerable /iterable object for search results
+  - This could return results across a number of requests to the server
+
+- So the search is an object with a lifetime
+  - You dispose it when you are finished with the search
+
+- Could the search be some sort of virtual file?
+  - Maybe returned with ILogTailer?
+  - Then it itself could be searchable
+
+- Or we could allow multiple searches
+
+
+File position vs lines
+----------------------
+- UIs will want to show lines
+
+- For large files it is hard to know the number of lines
+  - Or at least, maybe not hard but slow
+
+- Though maybe it could work to find the exact number of lines?
+  - We could do the slow scan first
+  - Then update this by reading just the tail as it changes
+  - So the server could know the exact number of lines
+
+- Like with timestamps, the server coudl keep an index of line-number vs file-position
+  - For a configured number of index entries
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
