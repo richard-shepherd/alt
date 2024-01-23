@@ -85,7 +85,13 @@ namespace LogFileGenerator
         /// </summary>
         static string phrase(bool initialCapital)
         {
-            return $"{verb(initialCapital)} {adjective()} {noun()}";
+            var phrase = $"{verb()} {adjective()} {noun()}";
+            if (initialCapital)
+            {
+                phrase = phrase[0].ToString().ToUpper() + phrase.Substring(1);
+            }
+            return phrase;
+
         }
 
         /// <summary>
@@ -99,14 +105,9 @@ namespace LogFileGenerator
         /// <summary>
         /// Returns a random verb.
         /// </summary>
-        static string verb(bool initialCapital)
+        static string verb()
         {
-            var verb = m_verbs[m_rnd.Next(m_verbs.Count)];
-            if(initialCapital)
-            {
-                verb = verb[0].ToString().ToUpper() + verb.Substring(1);
-            }
-            return verb;
+            return m_verbs[m_rnd.Next(m_verbs.Count)];
         }
 
         /// <summary>
@@ -141,7 +142,8 @@ namespace LogFileGenerator
             "calculating",
             "cross-referencing",
             "inverting",
-            "storing"
+            "storing",
+            "upscaling"
         };
         static List<string> m_nouns = new List<string>
         {
