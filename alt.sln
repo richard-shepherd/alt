@@ -8,7 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notes", "notes", "{52DA43E2
 		notes\notes.txt = notes\notes.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogFileGenerator", "LogFileGenerator\LogFileGenerator.csproj", "{8CF75999-924C-4F14-929A-AA1989557FD5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{404440BE-9CEA-4A89-9B7A-7D05F0CCF061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogFileGenerator", "Utilities\LogFileGenerator\LogFileGenerator.csproj", "{8CF75999-924C-4F14-929A-AA1989557FD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8CF75999-924C-4F14-929A-AA1989557FD5} = {404440BE-9CEA-4A89-9B7A-7D05F0CCF061}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA16F22-A7F7-4165-B6AE-7D3540128D39}

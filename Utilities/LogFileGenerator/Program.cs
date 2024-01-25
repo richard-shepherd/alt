@@ -11,13 +11,14 @@ namespace LogFileGenerator
     internal class Program
     {
         // Log generation paramaters...
-        static string PATH = "../../../LogFiles/LogFile1.log";
+        static string PATH = "../../../../LogFiles/LogFile1.log";
         static int NUM_LINES = 25000000;
         static double MAX_SECONDS_BETWEEN_LINES = 0.01;
         static DateTime START_TIMESTAMP = new DateTime(2024, 1, 10);
         static double ERROR_PROBABILITY = 0.01;
         static double WARN_PROBABILITY = 0.03;
         static double CAPITAL_NOUN_PROBABILITY = 0.2;
+        static double GUID_PROBABILITY = 0.5;
 
         /// <summary>
         /// Main.
@@ -119,6 +120,10 @@ namespace LogFileGenerator
             if(m_rnd.NextDouble() < CAPITAL_NOUN_PROBABILITY)
             {
                 noun = noun.ToUpper();
+                if (m_rnd.NextDouble() < GUID_PROBABILITY)
+                {
+                    noun += $"(ID={Guid.NewGuid()})";
+                }
             }
             return noun;
         }
