@@ -12,7 +12,7 @@ namespace LogFileGenerator
     {
         // Log generation paramaters...
         static string PATH = "../../../../LogFiles/LogFile1.log";
-        static int NUM_LINES = 25000000;
+        static int NUM_LINES = 25000;
         static double MAX_SECONDS_BETWEEN_LINES = 0.01;
         static DateTime START_TIMESTAMP = new DateTime(2024, 1, 10);
         static double ERROR_PROBABILITY = 0.01;
@@ -59,7 +59,14 @@ namespace LogFileGenerator
             line.Append($"{logLevel()}: ");
 
             // Text...
-            line.Append($"{phrase(true)} by {phrase(false)} from {shortPhrase()} with {shortPhrase()}");
+            if (m_rnd.NextDouble() < 0.1)
+            {
+                line.Append("-");
+            }
+            else
+            {
+                line.Append($"{phrase(true)} by {phrase(false)} from {shortPhrase()} with {shortPhrase()}");
+            }
 
             return line.ToString();
         }
