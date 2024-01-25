@@ -8,7 +8,7 @@ namespace LogFileGenerator
     /// <summary>
     /// Creates sample log files.
     /// </summary>
-    internal class Program
+    internal class LogFileGenerator
     {
         // Log generation paramaters...
         static string PATH = "../../../../LogFiles/LogFile1.log";
