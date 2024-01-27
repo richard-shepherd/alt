@@ -125,8 +125,63 @@ File position vs lines
   - Then update this by reading just the tail as it changes
   - So the server could know the exact number of lines
 
-- Like with timestamps, the server coudl keep an index of line-number vs file-position
+- Like with timestamps, the server could keep an index of line-number vs file-position
   - For a configured number of index entries
+
+- Can everything be done with fileposition instead of lines?
+  - Even in the UI
+
+- I think BareTail must do this
+  - As it opens files instantly, even very long ones
+  - And it cannot have time to find the number of lines
+
+- In BareTail, the scroll bar grabber is a fixed size
+  - It does not change for different size files
+  - So I am fairly sure that it is not related to either size of the file
+    or to the number of lines
+
+- So I think that the BareTail scrollbar is selecting a file position
+  - Not a line number
+
+- Even so, BareTail does show log lines!
+  - And as you manually scroll up, it shows you the next line
+  - So it must have some sort of interesting relationship between the lines and the 
+    scrollbar (file) position
+
+- Maybe it works like this:
+  - If you scroll using the scrollbar, it selects a file position
+  - If you scroll manually with the arrow keys it finds the position
+    for the selected line and then sets the scroll bar from that
+
+- It must have some buffer of lines that is larger than what you see on the screen
+  - And as you scroll (one way or the other) it makes sure that it has a buffer around
+    what you are seeing
+
+
+How would the UI work with file positions?
+------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

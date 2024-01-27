@@ -12,7 +12,7 @@ namespace LogFileGenerator
     {
         // Log generation paramaters...
         static string PATH = "../../../../LogFiles/LogFile1.log";
-        static int NUM_LINES = 25000;
+        static int NUM_LINES = 25000000;
         static double MAX_SECONDS_BETWEEN_LINES = 0.01;
         static DateTime START_TIMESTAMP = new DateTime(2024, 1, 10);
         static double ERROR_PROBABILITY = 0.01;
