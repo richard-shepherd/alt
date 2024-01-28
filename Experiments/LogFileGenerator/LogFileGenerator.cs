@@ -20,7 +20,7 @@ namespace LogFileGenerator
         static double WARN_PROBABILITY = 0.03;
         static double CAPITAL_NOUN_PROBABILITY = 0.2;
         static double GUID_PROBABILITY = 0.5;
-        static int PAUSE_BETWEEN_LINES_MS = 100;
+        static int PAUSE_BETWEEN_LINES_MS = 0;
 
         /// <summary>
         /// Main.
@@ -37,14 +37,25 @@ namespace LogFileGenerator
             {
                 for (var i = 0; i < NUM_LINES; i++)
                 {
-                    streamWriter.WriteLine(createLogLine(timestamp));
+                    // We create a random log line, then split it up and log it in three parts.
+                    // This is done to check that log tailing works when we have incomplete lines
+                    // in the log.
+                    var line = createLogLine(timestamp);
+                    var firstPart = line.Substring(0, 27);
+                    var secondPart = line.Substring(27);
+                    streamWriter.Write(firstPart);
                     streamWriter.Flush();
+                    if(PAUSE_BETWEEN_LINES_MS != 0) Thread.Sleep(PAUSE_BETWEEN_LINES_MS);
+                    streamWriter.Write(secondPart);
+                    streamWriter.Flush();
+                    if (PAUSE_BETWEEN_LINES_MS != 0) Thread.Sleep(PAUSE_BETWEEN_LINES_MS);
+                    streamWriter.Write(Environment.NewLine);
+                    streamWriter.Flush();
+                    if (PAUSE_BETWEEN_LINES_MS != 0) Thread.Sleep(PAUSE_BETWEEN_LINES_MS);
+
                     timestamp += TimeSpan.FromSeconds(m_rnd.NextDouble() * MAX_SECONDS_BETWEEN_LINES);
-                    if(PAUSE_BETWEEN_LINES_MS > 0)
-                    {
-                        Thread.Sleep(PAUSE_BETWEEN_LINES_MS);
-                    }
-                    if(i%10000 == 0)
+
+                    if (i % 10000 == 0)
                     {
                         Console.Write(".");
                     }
