@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LogTailer.cs" />
     <EmbeddedResource Include="AnotherLogTailer_Form.resx">
       <DependentUpon>AnotherLogTailer_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libs\Utilities\Utilities.csproj">
+      <Project>{781D9968-646F-4019-BF49-2BE0F9BF64B6}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

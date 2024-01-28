@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FCTB", "Experiments\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_Test1", "Experiments\UI_Test1\UI_Test1.csproj", "{0FF84F54-7CD9-444C-9B00-0B2DA6BFBD70}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{94FBC8B5-7EBF-4779-BCCC-2F1919524777}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Libs\Utilities\Utilities.csproj", "{781D9968-646F-4019-BF49-2BE0F9BF64B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ATL-Build = Debug|ATL-Build
@@ -40,6 +44,10 @@ Global
 		{0FF84F54-7CD9-444C-9B00-0B2DA6BFBD70}.Debug|ATL-Build.Build.0 = Debug|Any CPU
 		{0FF84F54-7CD9-444C-9B00-0B2DA6BFBD70}.Release|ATL-Build.ActiveCfg = Release|Any CPU
 		{0FF84F54-7CD9-444C-9B00-0B2DA6BFBD70}.Release|ATL-Build.Build.0 = Release|Any CPU
+		{781D9968-646F-4019-BF49-2BE0F9BF64B6}.Debug|ATL-Build.ActiveCfg = Debug|Any CPU
+		{781D9968-646F-4019-BF49-2BE0F9BF64B6}.Debug|ATL-Build.Build.0 = Debug|Any CPU
+		{781D9968-646F-4019-BF49-2BE0F9BF64B6}.Release|ATL-Build.ActiveCfg = Release|Any CPU
+		{781D9968-646F-4019-BF49-2BE0F9BF64B6}.Release|ATL-Build.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +57,7 @@ Global
 		{8CF75999-924C-4F14-929A-AA1989557FD5} = {D15161C3-DFD5-42A8-807F-6BE69DB9F783}
 		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0} = {D15161C3-DFD5-42A8-807F-6BE69DB9F783}
 		{0FF84F54-7CD9-444C-9B00-0B2DA6BFBD70} = {D15161C3-DFD5-42A8-807F-6BE69DB9F783}
+		{781D9968-646F-4019-BF49-2BE0F9BF64B6} = {94FBC8B5-7EBF-4779-BCCC-2F1919524777}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA16F22-A7F7-4165-B6AE-7D3540128D39}

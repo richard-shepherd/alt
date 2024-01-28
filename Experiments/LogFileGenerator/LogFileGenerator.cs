@@ -20,7 +20,7 @@ namespace LogFileGenerator
         static double WARN_PROBABILITY = 0.03;
         static double CAPITAL_NOUN_PROBABILITY = 0.2;
         static double GUID_PROBABILITY = 0.5;
-        static int PAUSE_BETWEEN_LINES_MS = 0;
+        static int PAUSE_BETWEEN_LINES_MS = 10;
 
         /// <summary>
         /// Main.

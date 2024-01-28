@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace UI_Test1
@@ -46,7 +50,13 @@ namespace UI_Test1
             try
             {
                 var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-                MessageBox.Show(String.Join("; ", files));
+                if(files.Length == 1)
+                {
+                    cleanupLogTailer();
+                    ctrlLog.Clear();
+                    m_logTailer = new LogTailer(files[0], onLogTailerCallback);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -80,6 +90,74 @@ namespace UI_Test1
         {
             MessageBox.Show(errorMessage);
         }
+
+        /// <summary>
+        /// Cleans up the active log tailer (if there is one).
+        /// </summary>
+        private void cleanupLogTailer()
+        {
+            m_logTailer?.Dispose();
+            m_logTailer = null;
+        }
+
+        /// <summary>
+        /// Called when we get an update from the log tailer.
+        /// Threading: This is called on a non-UI thread.
+        /// </summary>
+        private void onLogTailerCallback(LogTailer.CallbackInfo callbackInfo)
+        {
+            try
+            {
+                marshalToUIThread(() =>
+                {
+                    onLogTailerCallback_UIThread(callbackInfo);
+                });
+            }
+            catch (Exception ex)
+            {
+                logError(ex.Message);
+            }
+        }
+        private void onLogTailerCallback_UIThread(LogTailer.CallbackInfo callbackInfo)
+        {
+            try
+            {
+                while (m_lines.Count > 50)
+                {
+                    m_lines.RemoveFirst();
+                }
+                var s = new String(callbackInfo.CharBuffer);
+                var newLines = s.Split(new string[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var line in newLines)
+                {
+                    m_lines.AddLast(line);
+                }
+                ctrlLog.Clear();
+                foreach(var line in m_lines)
+                {
+                    ctrlLog.AppendText($"{line}{Environment.NewLine}");
+                }
+                ctrlLog.Navigate(ctrlLog.LinesCount - 1);
+            }
+            catch (Exception ex)
+            {
+                logError(ex.Message);
+            }
+        }
+
+        private void marshalToUIThread(Action action)
+        {
+            BeginInvoke(new Action<Action>(x => x()), new object[] { action });
+        }
+
+        #endregion
+
+        #region Private data
+
+        // Observes a file...
+        private LogTailer m_logTailer = null;
+
+        private LinkedList<string> m_lines = new LinkedList<string>();
 
         #endregion
     }
