@@ -160,6 +160,58 @@ File position vs lines
 
 How would the UI work with file positions?
 ------------------------------------------
+- The UI shows lines even though the scroll bar is selecting position
+
+- The server should report the file size whenever it changes
+  - The UI then knows the range for the scroll bar
+
+- If we are not following the tail, the scroll bar position will need to be updated
+  as the file size changes
+  - This should *only* affect the scroll bar - not the position shown on screen
+
+- We do not want to hold the whole file in memory
+  - In particular for large files
+  - It could be very slow to render
+  - We do not want to transport all the data from the server (especially if it is remote)
+
+- The UI will only be looking at a 'window' of the file
+  - Some limited number of lines
+
+- As we scroll we want to things which may be at odds with each other
+  - We want to see data as we scroll
+  - We do not want to send too much data over the transport
+    - Especially if you are scrolling a long way with the scroll bar over a very large file
+
+- The impact is not the same when using a local file
+  - In that case we do not care in the same way about the transport (as there isn't one)
+  - So maybe there can be a configurable delay before processing scroll actions
+
+- The UI should request more data than it needs to show on the screen
+  - There could be a configurable buffer size, eg 500 lines before the top of the screen and 500 lines after the end of the screen
+  - This lets you scroll manually with the arrow keys or mouse wheel without needing to retrieve more data
+
+- When does the UI request more data?
+  - It would be good to request data in batches
+  - So we would not request data when the buffer is less than the configured value
+    - Otherwise we would always be requesting data one line at a time
+    - Which would mean lots of network messages when using a remote transport
+  - So we should request when the buffer drops to a certain level
+    - eg, buffer is 200 lines, we request when we have only 100 lines
+    - These values could be configurable
+
+
+Updating the text shown by the UI
+---------------------------------
+- How this is done depends on what we use to show data in the UI
+
+- Should we create a custom control?
+
+- Should we use an existing control?
+  - eg, FCTB?
+
+
+  How do we follow the tail of the file?
+  --------------------------------------
 
 
 

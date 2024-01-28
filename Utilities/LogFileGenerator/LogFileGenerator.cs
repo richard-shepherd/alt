@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace LogFileGenerator
 {
@@ -19,6 +20,7 @@ namespace LogFileGenerator
         static double WARN_PROBABILITY = 0.03;
         static double CAPITAL_NOUN_PROBABILITY = 0.2;
         static double GUID_PROBABILITY = 0.5;
+        static int PAUSE_BETWEEN_LINES_MS = 100;
 
         /// <summary>
         /// Main.
@@ -36,13 +38,19 @@ namespace LogFileGenerator
                 for (var i = 0; i < NUM_LINES; i++)
                 {
                     streamWriter.WriteLine(createLogLine(timestamp));
+                    streamWriter.Flush();
                     timestamp += TimeSpan.FromSeconds(m_rnd.NextDouble() * MAX_SECONDS_BETWEEN_LINES);
-                    if(i%1000 == 0)
+                    if(PAUSE_BETWEEN_LINES_MS > 0)
+                    {
+                        Thread.Sleep(PAUSE_BETWEEN_LINES_MS);
+                    }
+                    if(i%10000 == 0)
                     {
                         Console.Write(".");
                     }
                 }
             }
+            Console.WriteLine("");
         }
 
         /// <summary>
