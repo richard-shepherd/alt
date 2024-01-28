@@ -8,40 +8,40 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notes", "notes", "{52DA43E2
 		notes\notes.txt = notes\notes.txt
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{404440BE-9CEA-4A89-9B7A-7D05F0CCF061}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Experiments", "Experiments", "{D15161C3-DFD5-42A8-807F-6BE69DB9F783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogFileGenerator", "Utilities\LogFileGenerator\LogFileGenerator.csproj", "{8CF75999-924C-4F14-929A-AA1989557FD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiments", "Experiments\Experiments\Experiments.csproj", "{6C290C2F-F26C-476C-A818-7148F7B331A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiments", "Utilities\Experiments\Experiments.csproj", "{6C290C2F-F26C-476C-A818-7148F7B331A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogFileGenerator", "Experiments\LogFileGenerator\LogFileGenerator.csproj", "{8CF75999-924C-4F14-929A-AA1989557FD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FCTB", "Utilities\Test_FCTB\Test_FCTB.csproj", "{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_FCTB", "Experiments\Test_FCTB\Test_FCTB.csproj", "{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|ALT Build = Debug|ALT Build
-		Release|ALT Build = Release|ALT Build
+		Debug|ATL-Build = Debug|ATL-Build
+		Release|ATL-Build = Release|ATL-Build
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CF75999-924C-4F14-929A-AA1989557FD5}.Debug|ALT Build.ActiveCfg = Debug|x64
-		{8CF75999-924C-4F14-929A-AA1989557FD5}.Debug|ALT Build.Build.0 = Debug|x64
-		{8CF75999-924C-4F14-929A-AA1989557FD5}.Release|ALT Build.ActiveCfg = Release|x64
-		{8CF75999-924C-4F14-929A-AA1989557FD5}.Release|ALT Build.Build.0 = Release|x64
-		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Debug|ALT Build.ActiveCfg = Debug|x64
-		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Debug|ALT Build.Build.0 = Debug|x64
-		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Release|ALT Build.ActiveCfg = Release|x64
-		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Release|ALT Build.Build.0 = Release|x64
-		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Debug|ALT Build.ActiveCfg = Debug|Any CPU
-		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Debug|ALT Build.Build.0 = Debug|Any CPU
-		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Release|ALT Build.ActiveCfg = Release|Any CPU
-		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Release|ALT Build.Build.0 = Release|Any CPU
+		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Debug|ATL-Build.ActiveCfg = Debug|x64
+		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Debug|ATL-Build.Build.0 = Debug|x64
+		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Release|ATL-Build.ActiveCfg = Release|x64
+		{6C290C2F-F26C-476C-A818-7148F7B331A8}.Release|ATL-Build.Build.0 = Release|x64
+		{8CF75999-924C-4F14-929A-AA1989557FD5}.Debug|ATL-Build.ActiveCfg = Debug|x64
+		{8CF75999-924C-4F14-929A-AA1989557FD5}.Debug|ATL-Build.Build.0 = Debug|x64
+		{8CF75999-924C-4F14-929A-AA1989557FD5}.Release|ATL-Build.ActiveCfg = Release|x64
+		{8CF75999-924C-4F14-929A-AA1989557FD5}.Release|ATL-Build.Build.0 = Release|x64
+		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Debug|ATL-Build.ActiveCfg = Debug|Any CPU
+		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Debug|ATL-Build.Build.0 = Debug|Any CPU
+		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Release|ATL-Build.ActiveCfg = Release|Any CPU
+		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0}.Release|ATL-Build.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8CF75999-924C-4F14-929A-AA1989557FD5} = {404440BE-9CEA-4A89-9B7A-7D05F0CCF061}
-		{6C290C2F-F26C-476C-A818-7148F7B331A8} = {404440BE-9CEA-4A89-9B7A-7D05F0CCF061}
-		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0} = {404440BE-9CEA-4A89-9B7A-7D05F0CCF061}
+		{6C290C2F-F26C-476C-A818-7148F7B331A8} = {D15161C3-DFD5-42A8-807F-6BE69DB9F783}
+		{8CF75999-924C-4F14-929A-AA1989557FD5} = {D15161C3-DFD5-42A8-807F-6BE69DB9F783}
+		{D28CA459-0556-4CC8-95D2-E26B08ACC9F0} = {D15161C3-DFD5-42A8-807F-6BE69DB9F783}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA16F22-A7F7-4165-B6AE-7D3540128D39}
